@@ -11,7 +11,7 @@ import { Iuser } from "../../dhrms-Interface/User";
 export class RegistrationService {
   _url: any;
   constructor(private http: HttpClient, private _jwtHelper: JwtHelperService) {
-    //this._url = process.env.prod_url || '';
+    this._url = process.env.prod_url || "";
   }
 
   setUserdetails() {
@@ -95,7 +95,7 @@ export class RegistrationService {
   //with JWT
   login(_email: string, _password: string): Observable<string> {
     var userObj: Iuser;
-    console.log(this._url);
+    console.log("TEsting environment variable: " + this._url);
     userObj = { Email: _email, Userpassword: _password };
     console.log(userObj);
     return this.http
