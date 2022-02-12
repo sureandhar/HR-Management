@@ -3,16 +3,15 @@ import { Injectable } from "@angular/core";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { from, Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
+import { environment } from "src/environments/environment.prod";
 import { Iuser } from "../../dhrms-Interface/User";
-import { environment } from "./../../../environments/environment";
-
 @Injectable({
   providedIn: "root",
 })
 export class RegistrationService {
   _url: any;
   constructor(private http: HttpClient, private _jwtHelper: JwtHelperService) {
-    this._url = process.env.API_URL;
+    this._url = environment.API_URL;
   }
 
   setUserdetails() {
@@ -87,7 +86,7 @@ export class RegistrationService {
     console.log(userObj);
     return this.http
       .post<string>(
-        "https://localhost:44358/api/dhrms/ValidateUserCredntials",
+        "" + this._url + "/api/dhrms/ValidateUserCredntials",
         userObj
       )
       .pipe(catchError(this.errorHandler));
@@ -96,11 +95,11 @@ export class RegistrationService {
   //with JWT
   login(_email: string, _password: string): Observable<string> {
     var userObj: Iuser;
-    console.log("TEsting environment variable: " + this._url);
+    // console.log("TEsting environment variable: " + this._url);
     userObj = { Email: _email, Userpassword: _password };
     console.log(userObj);
     return this.http
-      .post<string>("https://localhost:44358/api/auth/login", userObj)
+      .post<string>("" + this._url + "/api/auth/login", userObj)
       .pipe(catchError(this.errorHandler));
   }
 
@@ -117,7 +116,7 @@ export class RegistrationService {
     const headers = { "content-type": "application/json" };
     const body = JSON.stringify(params);
     return this.http
-      .post<string>("https://localhost:44358/api/dhrms/Updatepassword", body, {
+      .post<string>("" + this._url + "/api/dhrms/Updatepassword", body, {
         headers: headers,
       })
       .pipe(catchError(this.errorHandler));
