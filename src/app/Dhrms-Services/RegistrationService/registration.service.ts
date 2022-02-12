@@ -4,6 +4,7 @@ import { JwtHelperService } from "@auth0/angular-jwt";
 import { from, Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { Iuser } from "../../dhrms-Interface/User";
+import { environment } from "./../../../environments/environment";
 
 @Injectable({
   providedIn: "root",
@@ -11,7 +12,7 @@ import { Iuser } from "../../dhrms-Interface/User";
 export class RegistrationService {
   _url: any;
   constructor(private http: HttpClient, private _jwtHelper: JwtHelperService) {
-    this._url = process.env.prod_url || "";
+    this._url = process.env.API_URL;
   }
 
   setUserdetails() {
