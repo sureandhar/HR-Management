@@ -1,0 +1,62 @@
+<app-header></app-header>
+<div class="container">
+<h3 style="text-align: center;margin: 10px;">Schedule Interview</h3>
+    <form class="form-control" #scheduleForm="ngForm" (ngSubmit)="addInterviewschedule(scheduleForm)">
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <label >CandidateId</label>
+                <input type="text" class="form-control"  #fname="ngModel" [(ngModel)] ="candidateId" name="cid" ngModel readonly>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label >Select interviewer</label>
+                <select class="form-select" name="interviewerid" ngModel required aria-label="Default select example">
+                    <!-- <option value=0 selected></option> -->
+                    <option class="form-control" *ngFor="let item of interviewerList" [ngValue]="item.intervievwerid">
+                        {{ item.firstname + item.lastname }}
+                      </option>
+                  </select>
+                  <p class="form-error-message"
+          *ngIf="scheduleForm.controls.interviewerid?.touched && scheduleForm.controls.interviewerid.errors?.required">
+          <img width="15" height="15" src="../../../assets/Images/warning.png" alt="" srcset="">
+          This field is required.</p>
+              </div>
+            <div class="col-md-4 mb-3">
+                <label >Select round</label>
+                <select class="form-select" name="roundname" ngModel required aria-label="Default select example">
+                    <!-- <option value=0 selected></option> -->
+                    <option class="form-control" *ngFor="let item of roundList" [ngValue]="item">
+                        {{ item }}
+                      </option>
+                  </select>
+                  <p class="form-error-message"
+          *ngIf="scheduleForm.controls.roundname?.touched && scheduleForm.controls.roundname.errors?.required">
+          <img width="15" height="15" src="../../../assets/Images/warning.png" alt="" srcset="">
+          This field is required.</p>
+              </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label >Date</label>
+                <input class="form-control" type="date" name="date" ngModel required>
+                <p class="form-error-message"
+          *ngIf="scheduleForm.controls.date?.touched && scheduleForm.controls.date.errors?.required">
+          <img width="15" height="15" src="../../../assets/Images/warning.png" alt="" srcset="">
+            This field is required.</p>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label >Time</label>
+                <input class="form-control" type="time" name="time" ngModel required>
+                <p class="form-error-message"
+          *ngIf="scheduleForm.controls.time?.touched && scheduleForm.controls.time.errors?.required">
+          <img width="15" height="15" src="../../../assets/Images/warning.png" alt="" srcset="">
+            This field is required.</p>
+            </div>
+            
+        </div>
+        <button class="btn btn-primary" type="submit" [disabled]="!scheduleForm.valid" >Schedule</button>
+
+    </form>
+
+</div>
+<app-footer></app-footer>

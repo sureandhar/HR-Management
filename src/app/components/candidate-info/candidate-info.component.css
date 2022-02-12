@@ -1,0 +1,224 @@
+/* #mainTable
+{
+    border: 1px solid lightslategray;
+    border-radius: 10px;
+}
+#mainTableHeader
+{
+    text-align: center;
+    background-color: #0077b6;
+    column-span:all;
+    font-size: 1.5em;
+    padding: 5px;
+} */
+/* #tab
+{
+    background-color: #e0fbfc;
+} */
+.card-header
+{
+    background-color: #0077b6;
+}
+#head
+{
+    background-color: #0077b6;
+}
+
+#mainTable td:first-child
+{
+   font-weight: bold;
+    padding: 5px;
+}
+#experienceTable
+{
+    width: 100%;
+}
+#experienceTable th
+{
+font-size: 14px;
+padding: 5px;
+background-color: #caf0f8;
+
+}
+#experienceTable td
+{
+font-size: 13px;
+padding: 5px 5px 5px 8px;
+
+}
+#experienceTable tr
+{
+    background-color: #e0fbfc;
+    margin: 5px;
+    border-radius: 5px;
+
+}
+
+
+#skill
+{
+    background-color: white;
+    /* margin-top: 15px; */
+    /* margin-right: 10px; */
+    margin: 15px 10px 10px 10px;
+    /* height: 200px; */
+    border-radius: 10px;
+    padding: 0;
+    overflow: hidden;
+    box-shadow: 2.5px 6px 10px 5px #cccc;
+}
+#experience
+{
+    background-color: white;
+    /* margin-top: 15px; */
+    margin: 15px 10px 10px 10px;
+    /* height: 200px; */
+    border-radius: 10px;
+    padding: 0;
+    overflow: hidden;
+    box-shadow: 2.5px 6px 10px 5px #cccc;
+}
+#round
+{
+    background-color: white;
+    /* margin-top: 15px; */
+    margin: 15px 10px 10px 10px;
+    /* height: 200px; */
+    border-radius: 10px;
+    padding: 0;
+    overflow: hidden;
+    box-shadow: 2.5px 6px 10px 5px #cccc;
+}
+#profile
+{
+    background-color: white;
+    width: 100%;
+    /* margin: 15px; */
+    /* display: flex;
+    align-items: center; */
+    height: 630px;
+    border-radius: 10px;
+    padding: 0;
+    overflow: hidden;
+    box-shadow: 2.5px 6px 10px 5px #cccc;
+    margin: 10px;
+
+}
+#uskill
+{
+   /* height: 50px;  */
+   background-color: #0077b6;
+   width: 100%;
+   margin: 0;
+    padding: 0;
+    
+}
+#uexperience
+{
+    background-color: #0077b6;
+    /* height: 50px;  */
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    
+}
+#uround
+{
+    background-color: #0077b6;
+    /* height: 50px;  */
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    
+}
+#uskill p
+{
+color: white;
+font-size: 20px;
+padding: 5px;
+text-align: center;
+}
+#uexperience p
+{
+color: white;
+font-size: 20px;
+padding: 5px;
+text-align: center;
+}
+#uround p
+{
+color: white;
+font-size: 20px;
+padding: 5px;
+text-align: center;
+}
+#skillcontent 
+{
+margin: 10px;
+}
+
+#uprofile
+{
+    background-color: #0077b6;
+    /* height: 50px;  */
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+#uprofile p
+{
+color: white;
+font-size: 20px;
+padding: 5px;
+text-align: center;
+}
+.main
+{
+    /* margin-left: 170px;
+    margin-top: 20px; */
+    /* display: flex; */
+    align-items: center;
+}
+#profilecontent  
+{
+   /* align-items: center;
+   display: flex; */
+   margin: 10px 10px 10px 25px;
+
+}
+#profileicon
+{
+    margin: 0;
+    padding: 0;
+    /* background-color: teal; */
+}
+#skills
+{
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    
+}
+#skills p{
+    background-color: #caf0f8;
+    border-radius: 15px;
+    margin: 2px;
+    padding: 6px;
+    color: #293241;
+    cursor: pointer;
+    font-weight: bold;
+}
+.form-control[readonly] {
+    background-color: #e0fbfc;
+    opacity: 1;
+}
+.form-control 
+{
+    border: 1px solid #caf0f8;
+}
+#experiencecontent
+{
+    margin-top: -20px;
+}
+
+

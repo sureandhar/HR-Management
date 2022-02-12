@@ -1,0 +1,468 @@
+<!-- <p>add-interviewer works!</p> -->
+<div class="container-fluid">
+  <form class="form-control" #candiateForm="ngForm"  (ngSubmit)="addcandidatedetails(candiateForm)">
+
+    <div class="form-row row">
+      <div class="col-md-4 mb-3">
+        <label >First name</label>
+        <input type="text" class="form-control"  placeholder="First name"  #fname="ngModel"
+          name="fname" ngModel required>
+        <p class="form-error-message"
+          *ngIf="candiateForm.controls.fname?.touched && candiateForm.controls.fname.errors?.required">
+          <img width="15" height="15" src="../../../assets/Images/warning.png" alt="" srcset="">
+          This field is required.</p>
+
+      </div>
+      <div class="col-md-4 mb-3">
+        <label >Last name</label>
+        <input type="text" class="form-control"  placeholder="Last name" #lname="ngModel" 
+          name="lname" ngModel required>
+          <p class="form-error-message"
+          *ngIf="candiateForm.controls.lname?.touched && candiateForm.controls.lname.errors?.required">
+          <img width="15" height="15" src="../../../assets/Images/warning.png" alt="" srcset="">
+            This field is required.</p>
+
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="validationCustomUsername">Email</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroupPrepend">@</span>
+          </div>
+          <input type="text" class="form-control" id="validationCustomUsername" placeholder="Email"
+            aria-describedby="inputGroupPrepend" #email="ngModel" name="email" ngModel required>
+
+        </div>
+        <p class="form-error-message"
+        *ngIf="candiateForm.controls.email?.touched && candiateForm.controls.email.errors?.required">
+        <img width="15" height="15" src="../../../assets/Images/warning.png" alt="" srcset="">
+          This field is required.</p>
+
+      </div>
+    </div>
+    <div class="form-row row">
+
+      <div class="col-md-4 mb-3">
+        <label for="validationCustom05">DOB</label>
+        <input type="date" class="form-control" id="validationCustom05" #DOB="ngModel" name="dob" ngModel required>
+        <p    class="form-error-message"
+          *ngIf="candiateForm.controls.DOB?.touched && candiateForm.controls.DOB.errors?.required">
+          <img width="15" height="15" src="../../../assets/Images/warning.png" alt="" srcset="">
+            This field is required.</p>
+
+      </div>
+      <div class="col-md-6 mb-3 gender">
+        <label>Gender </label> <br>
+        <select class="form-control" name="gender" ngModel required>
+          <option value="" selected disabled hidden>--select gender--</option>
+          <option value="M">Male</option>
+          <option value="F">Female</option>
+          <option value="O">Other</option>
+        </select>
+        
+      </div>
+    </div>
+
+    <div class="form-row row">
+      <div class="col-md-4 mb-3">
+        <label >Current Address</label>
+        <textarea cols="80" rows="2" placeholder="Current Address"  class="form-control"
+          id="currentaddress" name="currentaddress" #currentaddress ngModel required></textarea>
+          <p class="form-error-message"
+          *ngIf="candiateForm.controls.currentaddress?.touched && candiateForm.controls.currentaddress.errors?.required">
+          <img width="15" height="15" src="../../../assets/Images/warning.png" alt="" srcset="">
+            This field is required.</p>
+
+      </div>
+      <div class="col-md-4 mb-3">
+          <div>
+            <label >Permanent Address</label>
+            <input class="form-check-input" style="margin-left: 5px;" [checked]="isChecked" (change)="checkValue($event,currentaddress.value)" type="checkbox">
+            <label style="font-weight: bold;padding-left: 10px;">same as current address</label>
+          </div>
+        <textarea cols="80" rows="2" placeholder="Permanent Address"  class="form-control"
+          id="permanentaddress" [(ngModel)]="permanentaddress_cpy" [readonly]="isReadonly" name="permanentaddress" ngModel required></textarea>
+          <p class="form-error-message"
+          *ngIf="candiateForm.controls.permanentaddress?.touched && candiateForm.controls.permanentaddress.errors?.required">
+          <img width="15" height="15" src="../../../assets/Images/warning.png" alt="" srcset="">
+            This field is required.</p>
+
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <label for="validationCustom04">Contact Number</label>
+        <input type="text" class="form-control" minlength="10" maxlength="10" pattern="^[1-9][0-9]*$"
+          id="validationCustom04" placeholder="Contact Number" #contactnumber="ngModel" name="contactnumber" ngModel
+          required>
+
+          <p class="form-error-message"
+          *ngIf="candiateForm.controls.contactnumber?.touched && candiateForm.controls.contactnumber.errors?.required">
+          <img width="15" height="15" src="../../../assets/Images/warning.png" alt="" srcset="">
+            This field is required.</p>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="validationCustom08">City</label>
+        <input type="text" class="form-control" id="validationCustom08" placeholder="City" name="city" ngModel required>
+        <p class="form-error-message"
+          *ngIf="candiateForm.controls.city?.touched && candiateForm.controls.city.errors?.required">
+          <img width="15" height="15" src="../../../assets/Images/warning.png" alt="" srcset="">
+            This field is required.</p>
+
+      </div>
+    </div>
+    <!-- Education section -->
+    <button type="button" class="collapsible">Add Education
+      <p class="form-error-message" *ngIf="educationFlag">
+        <img width="20" height="20" src="../../../assets/Images/warning.png" alt="" srcset="">
+          This field is required.</p>
+    </button>
+    <div class="content">
+      <!-- Higher Educations -->
+      <label class="u-section-header">Higher Education Details</label>
+      <hr>
+      <!-- Diploma details -->
+      <div class="u-section-name">
+        <label>
+          <h6>Diploma Details</h6>
+        </label>
+        <input class="form-check-input" type="checkbox" name="diplomackeckbox" #diploma (change)="radioCheck(diploma.name)"  [checked]="diplomacheckFlag" >
+      </div>
+
+      <div class="form-row row">
+        <div class="col-md-6 mb-3">
+          <label for="validationCustom09">Institution Name</label>
+          <input type="text" class="form-control"  placeholder="Institution Name"
+            name="dinstitutionname"  required>
+            <!-- <p class="form-error-message"
+            *ngIf="candiateForm.controls.dinstitution?.touched && candiateForm.controls.dinstitution.errors?.required">
+            <img width="15" height="15" src="../../../assets/Images/warning.png" alt="" srcset="">
+              This field is required.</p> -->
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="validationCustom10">Stream</label>
+          <input type="text" class="form-control"  placeholder="Stream" name="dstreamname" 
+            required>
+            <!-- <p class="form-error-message"
+            *ngIf="candiateForm.controls.dstream?.touched && candiateForm.controls.dstream.errors?.required">
+            <img width="15" height="15" src="../../../assets/Images/warning.png" alt="" srcset="">
+              This field is required.</p> -->
+          
+        </div>
+
+      </div>
+      <div class="form-row row">
+        <!-- <label>Academic Year</label> -->
+        <!-- <div class="col-md-4 mb-3">
+              <label for="validationCustom12">Start Date</label>
+              <input type="text" class="form-control" id="validationCustom09" placeholder="Joining Date" name="djoining" ngModel required>
+              <p    class="form-error-message"
+              *ngIf="candiateForm.controls.djoining?.touched && candiateForm.controls.djoining.errors?.required">Required</p> 
+            </div> -->
+        <div class="col-md-6 mb-3">
+          <label for="validationCustom11">Percentage / CGPA</label>
+          <input type="text" class="form-control" placeholder="upto two decimal"
+            name="dpercentage"  required>
+            <!-- <p class="form-error-message"
+            *ngIf="candiateForm.controls.dpercentage?.touched && candiateForm.controls.dpercentage.errors?.required">
+            <img width="15" height="15" src="../../../assets/Images/warning.png" alt="" srcset="">
+              This field is required.</p> -->
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="validationCustom13">Year of passing</label>
+          <input type="text" class="form-control"  placeholder="Year of passing"
+            name="dyearofpassing"  required>
+            <!-- <p class="form-error-message"
+            *ngIf="candiateForm.controls.dpassedout?.touched && candiateForm.controls.dpassedout.errors?.required">
+            <img width="15" height="15" src="../../../assets/Images/warning.png" alt="" srcset="">
+              This field is required.</p> -->
+        </div>
+      </div>
+      <hr>
+      <!-- UG Details -->
+
+      <!-- PG Details -->
+      <div class="row">
+        <div class="u-section-name col-md-6">
+          <label>
+            <h6>UG Details</h6>
+          </label>
+          <input class="form-check-input" type="checkbox" #ug (change)="radioCheck(ug.name)" name="ugckeckbox" [checked]="ugcheckFlag" >
+        </div>
+        <div class="u-section-name col-md-6">
+          <label>
+            <h6>PG Details</h6>
+          </label>
+          <input class="form-check-input" type="checkbox" #pg (change)="radioCheck(pg.name)" name="pgckeckbox" [checked]="pgcheckFlag" >
+        </div>
+      </div>
+
+
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-row row">
+            <div class="col-md-6 mb-3">
+              <label >Institution Name</label>
+              <input type="text" class="form-control"  placeholder="Institution Name"
+                name="uginstitutionname"  required>
+                <!-- <p class="form-error-message"
+                *ngIf="candiateForm.controls.uginstitution?.touched && candiateForm.controls.uginstitution.errors?.required">
+                <img width="15" height="15" src="../../../assets/Images/warning.png" alt="" srcset="">
+                  This field is required.</p> -->
+            </div>
+            <div class="col-md-6 mb-3">
+              <label >Stream</label>
+              <input type="text" class="form-control"  placeholder="Stream" name="ugstreamname" required>
+                <!-- <p class="form-error-message"
+                *ngIf="candiateForm.controls.ugstream?.touched && candiateForm.controls.ugstream.errors?.required">
+                <img width="15" height="15" src="../../../assets/Images/warning.png" alt="" srcset="">
+                  This field is required.</p> -->
+            </div>
+
+          </div>
+          <div class="form-row row">
+            <!-- <label>Academic Year</label> -->
+            <div class="col-md-6 mb-3">
+              <label >Percentage/CGPA</label>
+              <input type="text" class="form-control"  placeholder="upto two decimal"
+                name="ugpercentage"  required>
+                <!-- <p class="form-error-message"
+                *ngIf="candiateForm.controls.ugpercentage?.touched && candiateForm.controls.ugpercentage.errors?.required">
+                <img width="15" height="15" src="../../../assets/Images/warning.png" alt="" srcset="">
+                  This field is required.</p> -->
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="validationCustom18">Year of passing</label>
+              <input type="text" class="form-control"  placeholder="Year of passing" name="ugyearofpassing"  required>
+                <!-- <p class="form-error-message"
+                *ngIf="candiateForm.controls.ugpassedout?.touched && candiateForm.controls.ugpassedout.errors?.required">
+                <img width="15" height="15" src="../../../assets/Images/warning.png" alt="" srcset="">
+                  This field is required.</p> -->
+            </div>
+          </div>
+        </div>
+        <!-- pg section -->
+        <div class="col-md-6">
+          <div class="form-row row">
+            <div class="col-md-6 mb-3">
+              <label >Institution Name</label>
+              <input type="text" class="form-control"  placeholder="Institution Name"
+                name="pginstitutionname"  required>
+                <!-- <p class="form-error-message"
+                *ngIf="candiateForm.controls.pginstitution?.touched && candiateForm.controls.pginstitution.errors?.required">
+                <img width="15" height="15" src="../../../assets/Images/warning.png" alt="" srcset="">
+                  This field is required.</p> -->
+            </div>
+            <div class="col-md-6 mb-3">
+              <label >Stream</label>
+              <input type="text" class="form-control"  placeholder="Stream" name="pgstreamname" required>
+                <!-- <p class="form-error-message"
+                *ngIf="candiateForm.controls.pgstream?.touched && candiateForm.controls.pgstream.errors?.required">
+                <img width="15" height="15" src="../../../assets/Images/warning.png" alt="" srcset="">
+                  This field is required.</p> -->
+            </div>
+
+          </div>
+          <div class="form-row row">
+            <!-- <label>Academic Year</label> -->
+            <div class="col-md-6 mb-3">
+              <label for="validationCustom21">Percentage/CGPA</label>
+              <input type="text" class="form-control"  placeholder="upto two decimal"
+                name="pgpercentage"  required>
+                <!-- <p class="form-error-message"
+                *ngIf="candiateForm.controls.pgpercentage?.touched && candiateForm.controls.pgpercentage.errors?.required">
+                <img width="15" height="15" src="../../../assets/Images/warning.png" alt="" srcset="">
+                  This field is required.</p> -->
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="validationCustom23">Year of passing</label>
+              <input type="text" class="form-control" placeholder="Year of passing"
+                name="pgyearofpassing"  required>
+                <!-- <p class="form-error-message"
+                *ngIf="candiateForm.controls.pgpassedout?.touched && candiateForm.controls.pgpassedout.errors?.required">
+                <img width="15" height="15" src="../../../assets/Images/warning.png" alt="" srcset="">
+                  This field is required.</p> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Secondary Educations -->
+      <label class="u-section-header">
+        Secondary Education Details
+      </label>
+      <hr>
+      <div class="u-section-name">
+        <label>
+          <h6>SSLC Details</h6>
+        </label>
+        <input class="form-check-input" type="checkbox" name="sslccheckbox" #sslc (change)="radioCheck(sslc.name)" [checked]="sslccheckFlag" >
+      </div>
+
+      <div class="form-row row">
+        <div class="col-md-4 mb-3">
+          <label>Institution Name</label>
+          <input type="text" class="form-control" placeholder="Institution Name" name="sslcinstitutionname" 
+            required>
+            <!-- <p class="form-error-message"
+            *ngIf="candiateForm.controls.sslcinstitution?.touched && candiateForm.controls.sslcinstitution.errors?.required">
+            <img width="15" height="15" src="../../../assets/Images/warning.png" alt="" srcset="">
+              This field is required.</p> -->
+        </div>
+        <!-- for and id want to change  -->
+        <div class="col-md-4 mb-3">
+          <label>Percentage / CGPA</label>
+          <input type="text" class="form-control" placeholder="upto two decimal" name="sslcpercentage"  required>
+          <!-- <p class="form-error-message"
+          *ngIf="candiateForm.controls.sslcpercentage?.touched && candiateForm.controls.sslcpercentage.errors?.required">
+          <img width="15" height="15" src="../../../assets/Images/warning.png" alt="" srcset="">
+            This field is required.</p> -->
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="validationCustom23">Year of passing</label>
+          <input type="text" class="form-control" placeholder="Year of passing" name="sslcyearofpassing"  required>
+          <!-- <p class="form-error-message"
+          *ngIf="candiateForm.controls.sslcpassedout?.touched && candiateForm.controls.sslcpassedout.errors?.required">
+          <img width="15" height="15" src="../../../assets/Images/warning.png" alt="" srcset="">
+            This field is required.</p> -->
+        </div>
+      </div>
+
+
+      <hr>
+      <!-- PUC details -->
+      <div class="u-section-name">
+        <label>
+          <h6>PUC Details</h6>
+        </label>
+        <input class="form-check-input" type="checkbox" #puc name="puccheckbox" (change)="radioCheck(puc.name)" [checked]="puccheckFlag">
+      </div>
+
+      <div class="form-row row">
+        <div class="col-md-4 mb-3">
+          <label>Institution Name</label>
+          <input type="text" class="form-control" placeholder="Institution Name" name="pucinstitutionname"  required>
+          
+        </div>
+        <!-- for and id want to change  -->
+        <div class="col-md-4 mb-3">
+          <label for="validationCustom25">Percentage / CGPA</label>
+          <input type="text" class="form-control" placeholder="upto two decimal" name="pucpercentage"  required>
+          
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="validationCustom23">Year of passing</label>
+          <input type="text" class="form-control" placeholder="Year of passing" name="pucyearofpassing"  required>
+         
+        </div>
+      </div>
+    </div>
+    <br>
+      <!-- Work Experience -->
+    <button type="button" class="collapsible">Add Work Experiance
+      <p class="form-error-message" *ngIf="experienceFlag">
+          <img width="15" height="15" src="../../../assets/Images/warning.png" alt="" srcset="">
+            This field is required.</p>
+    </button>
+    <div class="content">
+    
+      <!-- <hr> -->
+      <!-- <label><h5>Work Experience :</h5></label>
+            <hr> -->
+      <ng-template #template>
+        <div class="experience">
+        <label class="u-section-header" id="experienceheader">
+          Experience
+          <input class="form-check-input" type="checkbox" name="experienceckeckbox" #Experience (change)="radioCheck(Experience.name)"  [checked]="ExperiencecheckFlag" >
+
+        </label>
+        
+
+      <div class="form-row row "  >
+        <div class="col-md-6 mb-3">
+          <label>Company Name<span class="star">*</span></label>
+          <input type="text" class="form-control" id="companyname" placeholder="Company Name" name="companyname" readonly >
+         
+        </div>
+        <div class="col-md-6 mb-3">
+          <div class="row">
+            <div class="col-md-6">
+              <label>No of Years<span class="star">*</span></label>
+              <input type="number" class="form-control" id="years" placeholder="Years" name="years" value="0" readonly >
+              
+            </div>
+            <div class="col-md-6">
+              <label>No of Months<span class="star">*</span></label>
+              <input type="number" class="form-control" id="months" placeholder="Months" name="months" value="0" readonly >
+              
+            </div>
+          </div>
+
+        </div>
+       
+      </div>
+      <div class="form-row row">
+        <div class="col-md-6 mb-3">
+          <label>Domain<span class="star">*</span></label>
+          <input type="text" class="form-control" id="domain" placeholder="Domain" name="domain" readonly >
+          
+        </div>
+        <div class="col-md-6 mb-3">
+          <label>Projects<span class="star">*</span></label>
+          <input type="text" class="form-control" id="projects" placeholder="Projects" name="projects"  readonly>
+          
+        </div>
+      </div>
+      <input class="btn btn-primary remove"  hidden (click)="removeExperienceView(parent.name)" #parent type="button" name="experience" value="Remove">
+      <hr>
+    </div>
+
+      
+    </ng-template>
+    <ng-container *ngTemplateOutlet="template"></ng-container>
+
+  
+    <ng-container #viewContainer></ng-container>
+      <input class="btn btn-primary" type="button"  style="margin-bottom: 10px;float: right;" (click)="addExperienceView()" disabled name="addexperience" value="Add Experience">
+    </div>
+    <br>
+    <!-- Skills details -->
+    <button type="button" class="collapsible">Add Skills
+      <p class="form-error-message" *ngIf="skillFlag">
+        <img width="15" height="15" src="../../../assets/Images/warning.png" alt="" srcset="">
+          This field is required.</p>
+    </button>
+    <div class="content">
+      <div class="form-row row">
+        <div class="col-md-6 mb-3">
+          <label>Primary Skills <span class="star">*</span></label>
+          <input type="text" class="form-control" placeholder="Primary Skills" name="primaryskills" required>
+          
+        </div>
+        <div class="col-md-6 mb-3">
+          <label>Secondary Skills</label>
+          <input type="text" class="form-control" placeholder="Secondary Skills" name="secondaryskills">
+          
+        </div>
+      </div>
+
+    </div>
+    <br>
+    <div  *ngIf="fname.value && lname.value">
+      <label>Add Resume: </label>
+      <app-upload-file [username]="fname.value+lname.value" (storedPath)="setstorePath($event)" ></app-upload-file>
+
+    </div>
+  
+
+    <button class="btn btn-primary" [disabled]="!candiateForm.valid" type="submit" >Submit form</button>
+    <!-- [disabled]="!candiateForm.valid" -->
+    <!-- [disabled]="!candiateForm.valid || experienceFlag ||skillFlag ||educationFlag " -->
+  </form>
+
+
+
+
+</div>

@@ -1,0 +1,20 @@
+.main::after {
+    content: "";
+    display: block;
+    height: 10px;
+    width: 100%;
+    /* background-image: linear-gradient(139deg, #fb8817, #ff4b01, #c12127, #e02aff); */
+    background-image: linear-gradient(139deg,#0077b6,#0077b6,#e0fbfc,#0077b6,#0077b6);
+}
+.main
+{
+    border-top: 1px solid #cccc;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+.main p
+{
+    margin: 0;
+    padding: 2px;
+}

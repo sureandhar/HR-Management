@@ -1,0 +1,5 @@
+.gender-items
+{
+display: flex;
+flex-direction: row;
+}

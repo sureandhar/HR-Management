@@ -1,0 +1,33 @@
+#skill
+{
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    
+}
+#skill p{
+    background-color: gray;
+    border-radius: 10px;
+    margin: 2px;
+    padding: 5px;
+    color: white;
+    cursor: pointer;
+}
+#pgfooter
+{
+    float: left;
+}
+.actionbutton button
+{
+margin: 5px;
+}
+.btn-primary
+{
+    background-color: #d3e3fc;
+    color: #293241;
+}
+.btn-primary:hover
+{
+    background-color: #ffffff;
+    /* font-weight: bold; */
+}

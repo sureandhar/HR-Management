@@ -1,0 +1,14 @@
+.form-error-message
+  {
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    display: inline-block;
+    width: auto;
+    border-radius: 4px;
+    padding: 0.25em 0.5em 0.25em 0.25em;
+    margin-top: 5px;
+  }
+  .form-error-message p{
+    padding-left: 0.25em;
+  }

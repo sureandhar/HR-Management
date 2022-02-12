@@ -1,0 +1,7 @@
+<!-- <p>search-control works!</p> -->
+<div class="row search"  >
+    <div class="search-control" >
+        <!-- <label >search</label> -->
+        <input class="form-control" type="text" style="font-weight: bold;" placeholder="Search by name" [ngModel]="searchModel" (ngModelChange)="updateSearchModel($event)">
+    </div>
+</div>

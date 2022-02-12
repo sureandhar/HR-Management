@@ -1,0 +1,202 @@
+<!-- <p>candidate-info works!</p> -->
+
+<div class="main container" *ngIf="candidateDetail; else errormessage">
+
+    
+    <div class="row">
+
+        <div class="col" id="profile">
+            <div id="uprofile">
+                <p>Full Profile</p>
+            </div>
+            <div class="row" id="profilecontent">
+                <div class="row" id="profileicon">
+                    <div class="col">
+                        <!-- <div class="col-md-7 border-right"> -->
+                            <div class="d-flex flex-column align-items-center text-center"><img
+                                    class="rounded-circle mt-5" width="150px"
+                                    src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span
+                                    class="font-weight-bold">{{candidateDetail.Firstname}}&nbsp;{{candidateDetail.Lastname}}</span><span
+                                    class="text-black-50">{{candidateDetail.Email}}</span><span> </span>
+                            </div>
+                        <!-- </div> -->
+                    </div>
+                </div>
+                <div class="row" >
+                    <div class="col-6">
+                       
+                            <div class="col-12"><label class="labels">First Name</label><input
+                                    type="text" class="form-control" placeholder="First Name"
+                                    value="{{candidateDetail.Firstname}}" readonly>
+                            </div>
+                            <div class="col-12"><label class="labels">Last Name</label><input
+                                    type="text" class="form-control" value="{{candidateDetail.Lastname}}"
+                                    placeholder="Last Name" readonly>
+                            </div>
+                           
+                       
+                            <div class="col-12"><label class="labels">DOB</label><input
+                                type="text" class="form-control" placeholder="DOB"
+                                value="{{candidateDetail.Dateofbirth | date: 'dd-MM-yyyy'}}" readonly>
+                            </div>
+                            <div class="col-12"><label class="labels">Email ID</label><input
+                                type="text" class="form-control"
+                                placeholder="enter email id" value="{{candidateDetail.Email}}"
+                                readonly>
+                            </div>
+                        
+                        <!-- <div class="row mt-2"> -->
+                           
+                        
+                        <!-- </div> -->
+                        
+                    </div>
+                    <div class="col-6">
+                       
+                            <div class="col-12"><label class="labels">Gender</label><input
+                                type="text" class="form-control" placeholder="Gender"
+                                value="{{candidateDetail.Gender}}" readonly>
+                            </div>
+                            <div class="col-12"><label class="labels">Phone
+                                Number</label><input type="text" class="form-control"
+                                placeholder="Phone Number" value="{{candidateDetail.Contactnumber}}"
+                                readonly>
+                            </div>
+                            
+                       
+                            <div class="col-12"><label class="labels">Permenant Address
+                            </label><input type="text" class="form-control"
+                                placeholder="enter address" value="{{candidateDetail.Permanentaddress}}"
+                                readonly>
+                        </div>
+                        <div class="col-12"><label class="labels">Current Address
+                            </label><input type="text" class="form-control"
+                                placeholder="enter address" value="{{candidateDetail.Currentaddress}}"
+                                readonly>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col" id="skill">
+            <div id="uskill">
+                <p>
+                    Skill
+
+                </p>
+            </div>
+            <div id="skillcontent">
+               <!-- <p>{{candidateDetail.Skillset}}</p>  -->
+               <div *ngIf="candidateDetail.skilllist;else noskill"> 
+                <div id="skills" *ngFor="let skills of candidateDetail.skilllist">
+                    <p>{{skills}}</p>
+                </div>
+              </div>
+              <ng-template #noskill>
+                <p style="text-align: center;" >No skill</p>
+              </ng-template>
+            </div>
+
+        </div>
+        <div class="col" id="experience" >
+            <div id="uexperience">
+                <p>
+                    Experience
+                </p>
+            </div>
+            <div id="experiencecontent">
+                <div  *ngIf="candidateDetail.Workexperiencedetails; else other" class="table-responsive" >
+                    <table id="experienceTable">
+                        <thead style="background-color: #d2e1e9;border-radius: 10px;padding: 5px;" >
+                            
+                            <th>Companyname</th>
+                            <th>Domainname</th>
+                            <th>Project</th>
+                            <th>Noofyears</th>
+                            <th>Noofmonths</th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let experience of candidateDetail.Workexperiencedetails">
+                               
+                                <td>{{experience.Companyname}}</td>
+                                <td>{{experience.Domainname}}</td>
+                                <td>{{experience.Project}}</td>
+                                <td>{{experience.Noofyears}}</td>
+                                <td>{{experience.Noofmonths}}</td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    </div>
+                    <ng-template #other>
+                        <p style="text-align: center;">Fresher</p>
+                        </ng-template>
+            </div>
+
+        </div>
+       
+    </div>
+    <div class="row">
+        <div class="col" id="round" >
+            <div id="uround">
+                <p>
+                    Round details
+                </p>
+            </div>
+            <div id="experiencecontent">
+                <div  *ngIf="roundList; else roundother" class="table-responsive" >
+                    <table id="experienceTable">
+                        <thead style="background-color: #d2e1e9;border-radius: 10px;padding: 5px;" >
+                            
+                            <th>Roundname</th>
+                            <th>Interviwername</th>
+                            <th>Attended</th>
+                            <th>Status</th>
+                            <th>Feedback</th>
+                            
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let round of roundList">
+                               
+                                <td>{{round.Roundname}}</td>
+                                <td>{{round.Interviewername}}</td>
+                                <td>
+                                    {{round.Attended}}
+                                </td>
+                                <td>
+                                    {{round.Status}}
+                                </td>
+                                <td >
+                                    <span *ngIf="round.Interviewerfeedback; else nodata">
+                                        {{round.Interviewerfeedback}}
+                                    </span>
+                                    <ng-template #nodata>
+                                        No data
+                                    </ng-template>
+                                </td>
+                                
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    </div>
+                    <ng-template #roundother>
+                        <p style="text-align: center;">No interview scheduled</p>
+                        </ng-template>
+            </div>
+    
+        </div>
+    </div>
+   
+   
+</div>
+
+   <ng-template #errormessage>
+    <p style="text-align: center;color: red;" >No records found</p>
+   </ng-template>
+

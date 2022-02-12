@@ -1,0 +1,70 @@
+<!-- <p>interviewerdetails works!</p> -->
+
+<div class="container">
+<app-search-control *ngIf="InterviewerList;" [(searchModel)]="searchModel"></app-search-control>
+    
+<div *ngIf="InterviewerList; else errormessage" class="table-responsive">
+    <div class="d-flex flex-row-reverse bd-highlight mb-2">
+        <div class="p-2 bd-highlight">
+            <label >No of records &nbsp;</label>
+          <select (change)="onTableSizeChange($event)" class="custom-select">
+            <option *ngFor="let size of tableSizes" [ngValue]="size">
+              {{ size }}
+            </option>
+          </select>
+        </div>
+      </div>
+    <table class="table ">
+        <thead>
+            <tr>
+            <th scope="col" >Name</th>
+            <th scope="col" >Email</th>
+            <th scope="col" >Job Role</th>
+            <th scope="col" >Unit Name</th>
+            <th scope="col" >SkillSet</th>
+           <th scope="col" >Contact Number</th>
+           <th scope="col" >Password</th>
+            <th scope="col" >Action</th>
+            </tr>
+        </thead>
+        <tbody >
+            <tr *ngFor="let item of InterviewerList | appFilter: searchModel">
+                <td>{{item.firstname + " "+item.lastname }}</td>
+                <td>{{item.email }}</td>
+                <td>{{item.jobrole }}</td>
+                <td>{{item.unitname }}</td>
+                <td >
+                    <div id="skill" *ngFor="let skills of item.skilllist">
+                        <p>{{skills}}</p>
+                    </div>
+                    
+                </td>
+                <td>{{item.contactnumber }}</td>
+                <td>
+                    <div id="password_{{item.intervievwerid}}" class="password">
+                        <button  (click)="showPassword($event)" style="display: block;" value="show password">show password</button>
+                    <input style="display: none;" type="text">
+                            <p style="display: none;">{{item.password}}</p>
+                            <!-- <progress id="progressbar" style="display: none;" value="60" max="60"></progress> -->
+                            <div class="progress" style="display: none;">
+                                <div class="progressbar" style="width: 100%;transition: width 0.5s;transition-delay: 0.2s; height:5px;background-color: blue;"></div>
+                            </div>
+                    </div>
+                    
+                </td>
+                <td>Add action </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="d-flex justify-content-center" id="pgfooter">
+        <pagination-controls 
+          previousLabel="Prev" 
+          nextLabel="Next" 
+          (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
+      </div>
+</div>
+<ng-template #errormessage>
+    <p style="text-align: center;color: red;" >No records found</p>
+</ng-template>
+</div>

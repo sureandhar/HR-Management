@@ -1,0 +1,70 @@
+<!-- <p>dashboard works!</p> -->
+
+<div class="container">
+    <div *ngIf="CandidateList; else errormessage" class="table-responsive">
+        <div class="d-flex flex-row-reverse bd-highlight mb-2">
+            <div class="p-2 bd-highlight">
+                <label >No of records &nbsp;</label>
+              <select (change)="onTableSizeChange($event)" class="custom-select">
+                <option *ngFor="let size of tableSizes" [ngValue]="size">
+                  {{ size }}
+                </option>
+              </select>
+            </div>
+          </div>
+    <table class="table table-hover">
+        <thead>
+            <tr scpoe="row">
+            <th>Name</th>
+            <!-- <th>Experience</th> -->
+            <th>SkillSet</th>
+            <th>Status</th>
+            <th>Scheduled Date</th>
+            <th>Action</th>
+            </tr>
+        </thead>
+        <tbody >
+<tr *ngFor="let item of CandidateList | paginate : {
+    itemsPerPage: tableSize,
+    currentPage: page,
+    totalItems: count
+  };">
+    <td>{{item.Firstname +" "+ item.Lastname }}</td>
+    <!-- <td>Need to add</td> -->
+    <td>
+      <div *ngIf="item.skilllist;else noskill"> 
+        <div id="skill" *ngFor="let skills of item.skilllist">
+            <p>{{skills}}</p>
+        </div>
+      </div>
+      <ng-template #noskill>
+        <p>No skill</p>
+      </ng-template>
+  </td>
+    <td>{{item.Status}}</td>
+    <td>
+      <div *ngIf="item.Scheduleddate; else nodate">
+        {{item.Scheduleddate | date: 'dd-MM-yyyy'}}
+      </div>
+      <ng-template #nodate>
+        Not scheduled
+      </ng-template>
+      
+    </td>
+    <td><button (click)="schedule(item.Candidateid)" class="btn btn-primary" type="button">Schedule</button></td>
+</tr>
+        </tbody>
+    </table>
+    <div class="d-flex justify-content-center" id="pgfooter">
+      <pagination-controls 
+        previousLabel="Prev" 
+        nextLabel="Next" 
+        (pageChange)="onTableDataChange($event)">
+      </pagination-controls>
+    </div>
+</div>
+
+<ng-template #errormessage>
+    <p style="text-align: center;color: red;" >No records found</p>
+</ng-template>
+</div>

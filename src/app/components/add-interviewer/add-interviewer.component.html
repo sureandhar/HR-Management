@@ -1,0 +1,92 @@
+<!-- <p>add-interviewer works!</p> -->
+<div class="container">
+<form class="form-control" #interviewerForm="ngForm" (ngSubmit)="addInterViewer(interviewerForm)">
+
+        <div class="form-row row">
+          <div class="col-md-4 mb-3">
+            <label for="validationCustom01">First name</label>
+            <input type="text" class="form-control" id="validationCustom01" placeholder="First name" #fname="ngModel" name="fname" ngModel required>
+                <p style="margin-top: 5px;height: 25px;width: auto;padding-top: 0%;" class="alert alert-danger"
+                *ngIf="interviewerForm.controls.fname?.touched && interviewerForm.controls.fname.errors?.required" >Required</p> 
+           
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="validationCustom02">Last name</label>
+            <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" #lname="ngModel" name="lname" ngModel required>
+            <p style="margin-top: 5px;height: 25px;width: auto;padding-top: 0%;" class="alert alert-danger"
+                *ngIf="interviewerForm.controls.lname?.touched && interviewerForm.controls.lname.errors?.required" >Required</p> 
+           
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="validationCustomUsername">Email</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupPrepend">@</span>
+              </div>
+              <input type="text" class="form-control" id="validationCustomUsername" placeholder="Email" aria-describedby="inputGroupPrepend" #email="ngModel" name="email" ngModel required>
+              
+            </div>
+            <p style="margin-top: 5px;height: 25px;width: auto;padding-top: 0%;" class="alert alert-danger"
+              *ngIf="interviewerForm.controls.email?.touched && interviewerForm.controls.email.errors?.required" >Required</p> 
+         
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="validationCustom03">Job Role</label>
+              <input type="text" class="form-control" id="validationCustom03" placeholder="Job Role" #jobrole="ngModel" name="jobrole"  ngModel required>
+              <p style="margin-top: 5px;height: 25px;width: auto;padding-top: 0%;" class="alert alert-danger"
+                *ngIf="interviewerForm.controls.jobrole?.touched && interviewerForm.controls.jobrole.errors?.required" >Required</p> 
+           
+            </div>
+            <div class="col-md-6 mb-3 gender">
+              <label >Gender </label> <br>
+              <select class="form-control" name="gender" ngModel required>
+                <option value="" selected disabled hidden>--select gender--</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+                <option value="O">Other</option>
+              </select>
+              <p style="margin-top: 5px;height: 25px;width: auto;padding-top: 0%;" class="alert alert-danger"
+                *ngIf="interviewerForm.controls.gender?.touched && interviewerForm.controls.gender.errors?.required" >Required</p> 
+            </div>
+          </div>
+          
+          <div class="col-md-3 mb-3">
+            <label for="validationCustom04">Unit Name</label>
+            <input type="text" class="form-control" id="validationCustom04" placeholder="Unit Name" #unitname="ngModel" name="unitname"  ngModel required>
+            <p style="margin-top: 5px;height: 25px;width: auto;padding-top: 0%;" class="alert alert-danger"
+              *ngIf="interviewerForm.controls.unitname?.touched && interviewerForm.controls.unitname.errors?.required" >Required</p> 
+         
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="validationCustom04">Primary Skills</label>
+            <input type="text" class="form-control" id="validationCustom04" placeholder="Primary Skills" #primaryskill="ngModel" name="primaryskills"  ngModel required>
+            <p style="margin-top: 5px;height: 25px;width: auto;padding-top: 0%;" class="alert alert-danger"
+            *ngIf="interviewerForm.controls.primaryskills?.touched && interviewerForm.controls.primaryskills.errors?.required" >Required</p> 
+       
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="validationCustom04">Contact Number</label>
+            <input type="text" class="form-control" minlength="10" maxlength="10" pattern="^[1-9][0-9]*$" id="validationCustom04" placeholder="Contact Number" #contactnumber="ngModel" name="contactnumber"  ngModel required>
+            <p style="margin-top: 5px;height: 25px;width: auto;padding-top: 0%;" class="alert alert-danger"
+            *ngIf="interviewerForm.controls.contactnumber?.touched && interviewerForm.controls.contactnumber.errors?.required" >Required</p> 
+       
+            <p style="margin-top: 5px;height: 25px;width: auto;padding-top: 0%;" class="alert alert-danger"
+            [hidden]="!interviewerForm.errors?.pattern" >Enter Valid contactnumber</p> 
+            
+            <p style="margin-top: 5px;height: 25px;width: auto;padding-top: 0%;" class="alert alert-danger"
+            [hidden]="!interviewerForm.errors?.minlength" >Contact number should be 10 digits</p> 
+       
+          </div>
+         
+        </div>
+
+        <button class="btn btn-primary" type="submit" [disabled]="!interviewerForm.valid" >Submit form</button>
+      </form>
+
+     
+   
+
+</div>

@@ -1,0 +1,31 @@
+<!-- <p>home works!</p> -->
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+<app-header></app-header>
+<div class="main-container">
+    <div class="left-panel">
+    <!-- <div id="logo">
+        
+        <img src="../../../assets/Images/logo.png" style="vertical-align:bottom;width: 285px;height: 85px;">
+    </div> -->
+    <div id="menu-control">
+    <button *ngIf="hrFlag" (click)="changeComponent(RefDashoboard.value)" #RefDashoboard value="Dashboard" id="icon"><img src="../../../assets/Images/option.png" width="30" height="30"> Dashboard</button>
+    <button *ngIf="interviewerFlag" (click)="changeComponent(RefDashoboard.value)" #RefDashoboard value="Dashboard" id="icon"><img src="../../../assets/Images/option.png" width="30" height="30"> Dashboard</button>
+    <button  *ngIf="hrFlag" (click)="changeComponent(RefCandidate.value)" #RefCandidate value="Add Candidate" id="icon"><img src="../../../assets/Images/add-group.png" width="30" height="30"> Candidate</button>
+    <button *ngIf="hrFlag" (click)="changeComponent(RefCandidatedetail.value)" #RefCandidatedetail value="Candidate Details" id="icon"> <img src="../../../assets/Images/team.png" width="30" height="30"> Candidate Details </button>
+    <button *ngIf="hrFlag" (click)="changeComponent(RefInterViewer.value)" #RefInterViewer value="Add InterViewer" id="icon"><img src="../../../assets/Images/add-user.png" width="30" height="30"> InterViewer</button>
+    <button *ngIf="hrFlag" (click)="changeComponent(RefInterViewerdetail.value)" #RefInterViewerdetail value="InterViewer Details" id="icon"><img src="../../../assets/Images/list.png" width="30" height="30"> InterViewer Details</button>
+    </div>
+    </div>
+    <div class="right-panel">
+        <p style="width: auto;height: 30px;padding-top: 2px; font-size: 1em; margin: 5px;color: white;background-color: #03045e;text-align: center;border-radius: 5px;">{{ComponentTitle}}</p>
+        <app-dashboard *ngIf="showDashboard"></app-dashboard>
+        <app-interviewer-dashboard *ngIf="showInterviewerDashboard"></app-interviewer-dashboard>
+        <app-add-candidate *ngIf="showAddCandidate"></app-add-candidate>
+        <app-candidate-details *ngIf="showcandidatedetail"></app-candidate-details>
+        <app-add-interviewer *ngIf="showAddInterviewer"></app-add-interviewer>
+        <app-interviewerdetails *ngIf="showAddInterviewerdetails"></app-interviewerdetails>
+        
+    </div>
+    
+</div>
+<app-footer></app-footer>
