@@ -1,126 +1,97 @@
-h1 {
-  font-size: 45px;
-  color: #fff;
-  font-weight: 300;
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  text-align: center;
-  padding: 1em 0 0.4em 0;
+.main {
+  height: 100vh;
 }
 
-.bg-layer {
-  background: #fff;
-  min-height: 100vh;
-}
-
-.icon1 {
-  margin: 0 0 1em;
-  padding: 0.8em 1em;
-  background: rgba(255, 255, 255, 0.94);
-}
-.icon1 span.fa {
-  color: #222;
-  width: 22px;
-}
-.main-icon {
-  text-align: center;
-}
-
-a {
-  color: #585858;
-  margin: 0em;
-}
-.bottom {
-  margin: 1em 0 0;
-}
-.header-main {
-  max-width: 350px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 999;
-  padding: 3em 2em;
-  background: rgba(255, 255, 255, 0.04);
-  -webkit-box-shadow: -1px 4px 28px 0px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: -1px 4px 28px 0px rgba(0, 0, 0, 0.75);
-  box-shadow: -1px 4px 28px 0px rgba(0, 0, 0, 0.75);
-}
-
-.header-left {
-  background: black;
-  padding: 0px;
-}
-
-.header-left-bottom input[type="email"] {
-  outline: none;
-  font-size: 15px;
-  color: #222;
-  border: none;
-  width: 90%;
-  display: inline-block;
-  background: transparent;
-  letter-spacing: 1px;
-}
-.header-left-bottom input[type="password"] {
-  outline: none;
-  font-size: 15px;
-  color: #222;
-  border: none;
-  width: 90%;
-  display: inline-block;
-  background: transparent;
-  letter-spacing: 1px;
-}
-.header-left-bottom button.btn {
-  background: #007cc0;
-  color: #fff;
-  font-size: 15px;
-  text-transform: uppercase;
-  padding: 0.8em 2em;
-  letter-spacing: 1px;
-  transition: 0.5s all;
-  display: inline-block;
-  cursor: pointer;
-  outline: none;
-  border: none;
-  width: 100%;
-}
-
-.login-check {
-  position: relative;
-}
-
-.checkbox i {
-  position: absolute;
+#content:before {
+  background-color: #0077b6;
+  color: #03045e;
+  height: 100%;
+  left: 0px;
+  position: fixed;
   top: 0px;
-  left: 0%;
-  text-align: center;
-  display: block;
-  /* width: 19px;
-  height: 17px; */
-  outline: none;
-  background: #fff;
-  border: black 1px solid;
-  border-radius: 2px;
-  cursor: pointer;
+  width: 31.9%;
+  content: "";
 }
 
-.checkbox {
+#content {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  padding: 30px;
   position: relative;
-  display: block;
-  padding-left: 30px;
-  text-transform: capitalize;
-  letter-spacing: 1px;
-  font-size: 14px;
-  color: black;
+  text-align: center;
 }
-
-h2 {
-  font-size: 26em;
-  color: #fff;
-  line-height: 1.3em;
-  letter-spacing: 10px;
+#content * {
+  position: relative;
 }
-h3 {
+.login {
+  position: absolute;
+  left: 5%;
+  top: 5%;
+  right: 50%;
+  width: 1200px;
+  height: 650px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  z-index: 1;
+}
+.login-left {
+  width: 30%;
+  height: 100%;
+  background-color: #0077b6;
+  margin: 0;
+  color: white;
+}
+.login-content {
+  position: absolute;
+  top: -75%;
+  left: 12%;
+}
+/* .login-bottom {
+  left: 40%;
+  width: 250px;
+  background-color: #0077b6;
+  border-radius: 5px;
+  
+} */
+#title {
   font-size: 2em;
-  color: #fff;
+}
+.login-email input {
+  width: 350px;
+  height: 35px;
+  border: 1.5px solid lightgray;
+  border-radius: 5px;
+  padding: 5px;
+}
+.login-pass input {
+  width: 350px;
+  height: 35px;
+  border: 1.5px solid lightgray;
+  border-radius: 5px;
+  padding: 5px;
+}
+.login-email label
+{
+  margin: 8px;
+}
+.login-pass label
+{
+  margin: 8px;
+}
+#logo
+{
+  top: 45%;
+  font-size: 2.5em;
+  text-align: center;
+}
+.login-bottom button
+{
+  /* left: 40%; */
+  width: 250px;
+  background-color: #0077b6;
+  border-radius: 5px;
+}
+.login-bottom button:hover
+{
+background-color: #00b4d8;
 }
