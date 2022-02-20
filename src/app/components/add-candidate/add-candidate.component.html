@@ -1,4 +1,4 @@
-<!-- <p>add-interviewer works!</p> -->
+<app-loader *ngIf="isEnabled"></app-loader>
 <div class="container-fluid">
   <form class="form-control" #candiateForm="ngForm"  (ngSubmit)="addcandidatedetails(candiateForm)">
 
@@ -450,11 +450,12 @@
 
     </div>
     <br>
-    <div  *ngIf="fname.value && lname.value">
+    <!-- commented add resume on 20-Feb-2022 -->
+    <!-- <div  *ngIf="fname.value && lname.value">
       <label>Add Resume: </label>
       <app-upload-file [username]="fname.value+lname.value" (storedPath)="setstorePath($event)" ></app-upload-file>
 
-    </div>
+    </div> -->
   
 
     <button class="btn btn-primary" [disabled]="!candiateForm.valid" type="submit" >Submit form</button>

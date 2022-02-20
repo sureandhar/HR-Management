@@ -1,32 +1,32 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe } from "@angular/common";
 import {
   Component,
   OnInit,
   TemplateRef,
   ViewChild,
   ViewContainerRef,
-} from '@angular/core';
-import { FormControl, FormGroup, NgForm } from '@angular/forms';
-import { ICandidate } from 'src/app/dhrms-Interface/Candidate';
-import { CandidateService } from 'src/app/Dhrms-Services/CandidateService/candidate.service';
-import { Icandidateexperience } from '../../dhrms-Interface/Experience';
-import { Ieducation } from '../../dhrms-Interface/Education';
-import { map } from 'rxjs/operators';
-import Swal from 'sweetalert2';
-import { Title } from '@angular/platform-browser';
+} from "@angular/core";
+import { FormControl, FormGroup, NgForm } from "@angular/forms";
+import { ICandidate } from "src/app/dhrms-Interface/Candidate";
+import { CandidateService } from "src/app/Dhrms-Services/CandidateService/candidate.service";
+import { Icandidateexperience } from "../../dhrms-Interface/Experience";
+import { Ieducation } from "../../dhrms-Interface/Education";
+import { map } from "rxjs/operators";
+import Swal from "sweetalert2";
+import { Title } from "@angular/platform-browser";
 declare var candidatescript: any;
 
 @Component({
-  selector: 'app-add-candidate',
-  templateUrl: './add-candidate.component.html',
-  styleUrls: ['./add-candidate.component.css'],
+  selector: "app-add-candidate",
+  templateUrl: "./add-candidate.component.html",
+  styleUrls: ["./add-candidate.component.css"],
 })
 export class AddCandidateComponent implements OnInit {
   constructor(
     private _candidateService: CandidateService,
     private titleService: Title
   ) {
-    this.titleService.setTitle('Add candidate');
+    this.titleService.setTitle("Add candidate");
   }
 
   ngOnInit(): void {
@@ -46,44 +46,45 @@ export class AddCandidateComponent implements OnInit {
   diplomacheckFlag: boolean = false;
   ExperiencecheckFlag: boolean = false;
   dbsavedPath: string;
-
+  isEnabled: boolean = false;
   educationNameList: any = {
     highereducation: {
       diploma: [
-        'dInstitutionname',
-        'dStreamname',
-        'dPercentage',
-        'dYearofpassing',
+        "dInstitutionname",
+        "dStreamname",
+        "dPercentage",
+        "dYearofpassing",
       ],
       ug: [
-        'ugInstitutionname',
-        'ugStreamname',
-        'ugPercentage',
-        'ugYearofpassing',
+        "ugInstitutionname",
+        "ugStreamname",
+        "ugPercentage",
+        "ugYearofpassing",
       ],
       pg: [
-        'pgInstitutionname',
-        'pgStreamname',
-        'pgPercentage',
-        'pgYearofpassing',
+        "pgInstitutionname",
+        "pgStreamname",
+        "pgPercentage",
+        "pgYearofpassing",
       ],
     },
     secondaryeducation: {
-      sslc: ['sslcInstitutionname', 'sslcPercentage', 'sslcYearofpassing'],
-      puc: ['pucInstitutionname', 'pucPercentage', 'pucYearofpassing'],
+      sslc: ["sslcInstitutionname", "sslcPercentage", "sslcYearofpassing"],
+      puc: ["pucInstitutionname", "pucPercentage", "pucYearofpassing"],
     },
   };
 
   //node number
   nodenumber = 1;
   //For cloning div
-  @ViewChild('viewContainer', { read: ViewContainerRef })
+  @ViewChild("viewContainer", { read: ViewContainerRef })
   viewContainer: ViewContainerRef;
-  @ViewChild('template') template: TemplateRef<any>;
+  @ViewChild("template") template: TemplateRef<any>;
 
   //to add candidate
   addcandidatedetails(form: NgForm) {
     console.log(form);
+    this.isEnabled = true;
     // var datePipe = new DatePipe("en-US");
     // var dob = datePipe.transform(form.value.dob, 'dd/MM/yyyy');
     // var date = new Date(new DatePipe("en-US").transform(form.value.dob,'dd/MM/yyyy'))
@@ -99,25 +100,25 @@ export class AddCandidateComponent implements OnInit {
       for (let index = 0; index <= this.nodenumber; index++) {
         console.log(index);
         var _temparr: Icandidateexperience;
-        var _companyname = '';
-        var _years = '';
-        var _months = '';
-        var _domain = '';
-        var _projects = '';
+        var _companyname = "";
+        var _years = "";
+        var _months = "";
+        var _domain = "";
+        var _projects = "";
         if (index == 0) {
           _companyname = (
-            document.getElementsByName('companyname')[0] as HTMLInputElement
+            document.getElementsByName("companyname")[0] as HTMLInputElement
           ).value;
-          _years = (document.getElementsByName('years')[0] as HTMLInputElement)
+          _years = (document.getElementsByName("years")[0] as HTMLInputElement)
             .value;
           _months = (
-            document.getElementsByName('months')[0] as HTMLInputElement
+            document.getElementsByName("months")[0] as HTMLInputElement
           ).value;
           _domain = (
-            document.getElementsByName('domain')[0] as HTMLInputElement
+            document.getElementsByName("domain")[0] as HTMLInputElement
           ).value;
           _projects = (
-            document.getElementsByName('projects')[0] as HTMLInputElement
+            document.getElementsByName("projects")[0] as HTMLInputElement
           ).value;
           // console.log(_companyname)
           _temparr = {
@@ -132,33 +133,33 @@ export class AddCandidateComponent implements OnInit {
           experienceValueList.push(_temparr);
         } else {
           console.log(
-            document.getElementsByClassName('experience' + index).length
+            document.getElementsByClassName("experience" + index).length
           );
           if (
-            document.getElementsByClassName('experience' + index).length >= 1
+            document.getElementsByClassName("experience" + index).length >= 1
           ) {
-            console.log('insed' + index);
+            console.log("insed" + index);
             _companyname = (
               document.getElementsByName(
-                'companyname' + index
+                "companyname" + index
               )[0] as HTMLInputElement
             ).value;
             _years = (
-              document.getElementsByName('years' + index)[0] as HTMLInputElement
+              document.getElementsByName("years" + index)[0] as HTMLInputElement
             ).value;
             _months = (
               document.getElementsByName(
-                'months' + index
+                "months" + index
               )[0] as HTMLInputElement
             ).value;
             _domain = (
               document.getElementsByName(
-                'domain' + index
+                "domain" + index
               )[0] as HTMLInputElement
             ).value;
             _projects = (
               document.getElementsByName(
-                'projects' + index
+                "projects" + index
               )[0] as HTMLInputElement
             ).value;
             //  console.log(_companyname)
@@ -199,7 +200,7 @@ export class AddCandidateComponent implements OnInit {
       });
       //adding extracted value to education list
       // educationValueList.push(diploma);
-      educationValueList['diploma'] = diploma;
+      educationValueList["diploma"] = diploma;
     }
 
     // console.log(diploma);
@@ -219,7 +220,7 @@ export class AddCandidateComponent implements OnInit {
       // console.log(ug);
       //adding extracted value to education list
       // educationValueList.push(ug);
-      educationValueList['ug'] = ug;
+      educationValueList["ug"] = ug;
     }
 
     //to get pg details from input fields
@@ -236,7 +237,7 @@ export class AddCandidateComponent implements OnInit {
       // console.log(ug);
       //adding extracted value to education list
       // educationValueList.push(pg);
-      educationValueList['pg'] = pg;
+      educationValueList["pg"] = pg;
     }
 
     //highereducation
@@ -258,7 +259,7 @@ export class AddCandidateComponent implements OnInit {
       // console.log(ug);
       //adding extracted value to education list
       // educationValueList.push(sslc);
-      educationValueList['sslc'] = sslc;
+      educationValueList["sslc"] = sslc;
       console.log(sslc);
     }
 
@@ -276,20 +277,20 @@ export class AddCandidateComponent implements OnInit {
       // console.log(ug);
       //adding extracted value to education list
       // educationValueList.push(puc);
-      educationValueList['puc'] = puc;
+      educationValueList["puc"] = puc;
       console.log(puc);
     }
 
     var skillValueList: { [name: string]: string } = {};
     //to get the skill input fields
     var primarySkill = (
-      document.getElementsByName('primaryskills')[0] as HTMLInputElement
+      document.getElementsByName("primaryskills")[0] as HTMLInputElement
     ).value;
     var secondarySkill = (
-      document.getElementsByName('secondaryskills')[0] as HTMLInputElement
+      document.getElementsByName("secondaryskills")[0] as HTMLInputElement
     ).value;
-    skillValueList['Primaryskill'] = primarySkill;
-    skillValueList['Secondaryskill'] = secondarySkill;
+    skillValueList["Primaryskill"] = primarySkill;
+    skillValueList["Secondaryskill"] = secondarySkill;
 
     var interviewerobj: ICandidate = {
       Firstname: form.value.fname,
@@ -304,15 +305,15 @@ export class AddCandidateComponent implements OnInit {
       skilllist: [],
       Candidateid: 0,
       Scheduleddate: null,
-      Skillset: '',
+      Skillset: "",
       Userid: 0,
       Dateofbirth: form.value.dob,
       Workexperiencedetails: [],
-      Status: '',
-      Scheduledtime: '',
-      Roundname: '',
+      Status: "",
+      Scheduledtime: "",
+      Roundname: "",
       Interviewdetails: [],
-      Interviewerid:''
+      Interviewerid: "",
     };
     console.log(primarySkill);
     console.log(secondarySkill);
@@ -321,24 +322,24 @@ export class AddCandidateComponent implements OnInit {
 
     //Validation for empty or required fields
 
-    console.log('inside validation');
+    console.log("inside validation");
     //sslc
     if (educationValueList.sslc != null && this.sslccheckFlag) {
       for (let value of Object.values(educationValueList.sslc)) {
-        if (value == '') {
+        if (value == "") {
           this.educationFlag = true;
-          console.log('inside validation enable');
+          console.log("inside validation enable");
         } else {
           this.educationFlag = false;
-          console.log('inside validation disable');
+          console.log("inside validation disable");
         }
       }
     }
     console.log(typeof educationValueList.puc);
     //puc
-    if (typeof educationValueList.puc != 'undefined' && this.puccheckFlag) {
+    if (typeof educationValueList.puc != "undefined" && this.puccheckFlag) {
       for (let value of Object.values(educationValueList.puc)) {
-        if (value == '') {
+        if (value == "") {
           this.educationFlag = true;
         } else {
           this.educationFlag = false;
@@ -347,11 +348,11 @@ export class AddCandidateComponent implements OnInit {
     }
     //dimploma
     if (
-      typeof educationValueList.diploma != 'undefined' &&
+      typeof educationValueList.diploma != "undefined" &&
       this.diplomacheckFlag
     ) {
       for (let value of Object.values(educationValueList.diploma)) {
-        if (value == '') {
+        if (value == "") {
           this.educationFlag = true;
         } else {
           this.educationFlag = false;
@@ -359,9 +360,9 @@ export class AddCandidateComponent implements OnInit {
       }
     }
     //ug
-    if (typeof educationValueList.ug != 'undefined' && this.ugcheckFlag) {
+    if (typeof educationValueList.ug != "undefined" && this.ugcheckFlag) {
       for (let value of Object.values(educationValueList.ug)) {
-        if (value == '') {
+        if (value == "") {
           this.educationFlag = true;
         } else {
           this.educationFlag = false;
@@ -369,9 +370,9 @@ export class AddCandidateComponent implements OnInit {
       }
     }
     //pg
-    if (typeof educationValueList.pg != 'undefined' && this.pgcheckFlag) {
+    if (typeof educationValueList.pg != "undefined" && this.pgcheckFlag) {
       for (let value of Object.values(educationValueList.pg)) {
-        if (value == '') {
+        if (value == "") {
           this.educationFlag = true;
         } else {
           this.educationFlag = false;
@@ -383,16 +384,16 @@ export class AddCandidateComponent implements OnInit {
     if (this.ExperiencecheckFlag) {
       experienceValueList.forEach((element) => {
         // console.log(element);
-        if (typeof element != 'undefined' && element != null) {
+        if (typeof element != "undefined" && element != null) {
           for (let value of Object.values(element)) {
             // console.log(value +" experienc");
-            if (typeof value == 'number' && value < -1) {
+            if (typeof value == "number" && value < -1) {
               this.experienceFlag = true;
             } else {
               this.experienceFlag = false;
             }
 
-            if (typeof value != 'number' && value == '') {
+            if (typeof value != "number" && value == "") {
               this.experienceFlag = true;
               // console.log("inside experience "+value)
             } else {
@@ -412,7 +413,7 @@ export class AddCandidateComponent implements OnInit {
     }
 
     //validation for skill section
-    if (typeof primarySkill != 'undefined' && primarySkill == '') {
+    if (typeof primarySkill != "undefined" && primarySkill == "") {
       this.skillFlag = true;
       // console.log("inside validation enable");
     } else {
@@ -421,11 +422,11 @@ export class AddCandidateComponent implements OnInit {
     }
 
     console.log(
-      'flag detilas' + this.skillFlag + this.experienceFlag + this.educationFlag
+      "flag detilas" + this.skillFlag + this.experienceFlag + this.educationFlag
     );
 
     if (!this.skillFlag && !this.experienceFlag && !this.educationFlag) {
-      console.log('adding details');
+      console.log("adding details");
       this._candidateService
         .AddCandidate(
           interviewerobj,
@@ -436,12 +437,13 @@ export class AddCandidateComponent implements OnInit {
         .subscribe(
           (response) => {
             console.log(response);
-            var message = '';
-            if (response == '0') {
-              message = 'success';
+            var message = "";
+            if (response == "0") {
+              this.isEnabled = false;
+              message = "success";
               Swal.fire({
-                icon: 'success',
-                text: 'candidate details saved successfully',
+                icon: "success",
+                text: "candidate details saved successfully",
                 showConfirmButton: true,
                 timer: 4000,
               }).then((element) => {
@@ -450,10 +452,11 @@ export class AddCandidateComponent implements OnInit {
                 }
               });
             } else if (response == 1) {
-              message = 'No changes were made Try again after somtime ';
+              this.isEnabled = false;
+              message = "No changes were made Try again after somtime ";
               Swal.fire({
-                icon: 'info',
-                title: 'Oops...',
+                icon: "info",
+                title: "Oops...",
                 text: message,
                 showConfirmButton: true,
                 timer: 4000,
@@ -463,17 +466,19 @@ export class AddCandidateComponent implements OnInit {
                 }
               });
             } else if (response == -1) {
-              message = 'Entered email already exists';
+              this.isEnabled = false;
+              message = "Entered email already exists";
               Swal.fire({
-                icon: 'info',
+                icon: "info",
                 text: message,
                 showConfirmButton: true,
                 timer: 4000,
               });
             } else if (response == -2) {
-              message = 'User creation failed Try again after somtime';
+              this.isEnabled = false;
+              message = "User creation failed Try again after somtime";
               Swal.fire({
-                icon: 'error',
+                icon: "error",
                 text: message,
                 showConfirmButton: true,
                 timer: 4000,
@@ -483,17 +488,19 @@ export class AddCandidateComponent implements OnInit {
                 }
               });
             } else if (response == -3) {
-              message = 'Failed to add Skills';
+              this.isEnabled = false;
+              message = "Failed to add Skills";
               Swal.fire({
-                icon: 'error',
+                icon: "error",
                 text: message,
                 showConfirmButton: true,
                 timer: 4000,
               });
             } else if (response == -4) {
-              message = 'Failed to add Experience';
+              this.isEnabled = false;
+              message = "Failed to add Experience";
               Swal.fire({
-                icon: 'error',
+                icon: "error",
                 text: message,
                 showConfirmButton: true,
                 timer: 4000,
@@ -503,9 +510,10 @@ export class AddCandidateComponent implements OnInit {
                 }
               });
             } else if (response == -5) {
-              message = 'Failed to add Education';
+              this.isEnabled = false;
+              message = "Failed to add Education";
               Swal.fire({
-                icon: 'error',
+                icon: "error",
                 text: message,
                 showConfirmButton: true,
                 timer: 4000,
@@ -515,10 +523,11 @@ export class AddCandidateComponent implements OnInit {
                 }
               });
             } else if (response == -99) {
-              message = 'Something went wrong Try again after somtime';
+              this.isEnabled = false;
+              message = "Something went wrong Try again after somtime";
               Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
+                icon: "error",
+                title: "Oops...",
                 text: message,
                 showConfirmButton: true,
                 timer: 4000,
@@ -531,9 +540,10 @@ export class AddCandidateComponent implements OnInit {
           },
           (errorResponse) => {
             console.log(errorResponse);
+            this.isEnabled = false;
           },
           () => {
-            console.log('AddInterviewer method executed');
+            console.log("AddInterviewer method executed");
           }
         );
     }
@@ -544,19 +554,19 @@ export class AddCandidateComponent implements OnInit {
     // console.log(event.currentTarget.checked);
     // console.log(keystring + "this is string" + this.isChecked);
     var _flag = event.currentTarget.checked;
-    if (keystring == '') {
-      alert('Current address should not empty');
-      console.log('one');
+    if (keystring == "") {
+      alert("Current address should not empty");
+      console.log("one");
       event.currentTarget.checked = false;
       // this.isChecked=false;
     } else {
-      if (_flag && keystring != '') {
+      if (_flag && keystring != "") {
         this.permanentaddress_cpy = keystring;
         this.isReadonly = !this.isReadonly;
         this.isChecked = !this.isChecked;
         //  console.log("two");
       } else {
-        this.permanentaddress_cpy = '';
+        this.permanentaddress_cpy = "";
         this.isReadonly = !this.isReadonly;
         event.currentTarget.checked = false;
         this.isChecked = false;
@@ -569,38 +579,38 @@ export class AddCandidateComponent implements OnInit {
   radioCheck(Keyname: string) {
     // var _flag=event.currentTarget.checked;
     // console.log(Keyname);
-    if (Keyname == 'puccheckbox') {
+    if (Keyname == "puccheckbox") {
       this.puccheckFlag = !this.puccheckFlag;
-    } else if (Keyname == 'sslccheckbox') {
+    } else if (Keyname == "sslccheckbox") {
       this.sslccheckFlag = !this.sslccheckFlag;
-    } else if (Keyname == 'pgckeckbox') {
+    } else if (Keyname == "pgckeckbox") {
       this.pgcheckFlag = !this.pgcheckFlag;
       // console.log(this.pgcheckFlag);
-    } else if (Keyname == 'ugckeckbox') {
+    } else if (Keyname == "ugckeckbox") {
       this.ugcheckFlag = !this.ugcheckFlag;
-    } else if (Keyname == 'diplomackeckbox') {
+    } else if (Keyname == "diplomackeckbox") {
       this.diplomacheckFlag = !this.diplomacheckFlag;
-    } else if (Keyname == 'experienceckeckbox') {
+    } else if (Keyname == "experienceckeckbox") {
       console.log(Keyname);
       this.ExperiencecheckFlag = !this.ExperiencecheckFlag;
-      const collection = document.getElementsByClassName('experience')[0];
-      const inputcollection = collection.getElementsByTagName('input');
+      const collection = document.getElementsByClassName("experience")[0];
+      const inputcollection = collection.getElementsByTagName("input");
 
       if (this.ExperiencecheckFlag) {
         //to set all the input fields readonly
         for (let i = 0; i < inputcollection.length; i++) {
-          inputcollection[i].removeAttribute('readonly');
+          inputcollection[i].removeAttribute("readonly");
         }
         //to set button to disbled
         (
-          document.getElementsByName('addexperience')[0] as HTMLButtonElement
+          document.getElementsByName("addexperience")[0] as HTMLButtonElement
         ).disabled = false;
       } else {
         for (let i = 0; i < inputcollection.length; i++) {
           inputcollection[i].readOnly = true;
         }
         (
-          document.getElementsByName('addexperience')[0] as HTMLButtonElement
+          document.getElementsByName("addexperience")[0] as HTMLButtonElement
         ).disabled = true;
       }
     }
@@ -616,49 +626,49 @@ export class AddCandidateComponent implements OnInit {
     //converting rootnode into HTMLElement
     var _labelExp = template.rootNodes[0] as HTMLElement;
     var _parentElem = template.rootNodes[0];
-    var _divOne = _parentElem.getElementsByTagName('div')[0];
-    var _divTwo = _parentElem.getElementsByTagName('div')[6];
+    var _divOne = _parentElem.getElementsByTagName("div")[0];
+    var _divTwo = _parentElem.getElementsByTagName("div")[6];
     // console.log(_parentElem.getElementsByTagName("input"));
     //setting dynamic value to header name
-    _labelExp.getElementsByTagName('label')[0].innerHTML =
-      _labelExp.getElementsByTagName('label')[0].innerHTML + this.nodenumber;
+    _labelExp.getElementsByTagName("label")[0].innerHTML =
+      _labelExp.getElementsByTagName("label")[0].innerHTML + this.nodenumber;
     //setting class name for the parent div
     _parentElem.className = _parentElem.className + this.nodenumber;
     //setting class name for the parent div remove
-    var _removeBtn = _parentElem.getElementsByTagName('input')[5];
+    var _removeBtn = _parentElem.getElementsByTagName("input")[5];
     _removeBtn.name = _removeBtn.name + this.nodenumber;
     _removeBtn.hidden = false;
 
     // console.log(_removeBtn);
     // console.log(_divOne.getElementsByTagName("p"));
     //unboxing divone
-    var company = _divOne.getElementsByTagName('div')[0];
+    var company = _divOne.getElementsByTagName("div")[0];
     var _yearsMonths = _divOne
-      .getElementsByTagName('div')[1]
-      .getElementsByTagName('div')[0];
-    var years = _yearsMonths.getElementsByTagName('div')[0];
-    var months = _yearsMonths.getElementsByTagName('div')[1];
+      .getElementsByTagName("div")[1]
+      .getElementsByTagName("div")[0];
+    var years = _yearsMonths.getElementsByTagName("div")[0];
+    var months = _yearsMonths.getElementsByTagName("div")[1];
     // console.log(years);
     // console.log(months);
     // console.log(company);
     //unboxing divtwo
-    var domain = _divTwo.getElementsByTagName('div')[0];
-    var projects = _divTwo.getElementsByTagName('div')[1];
+    var domain = _divTwo.getElementsByTagName("div")[0];
+    var projects = _divTwo.getElementsByTagName("div")[1];
 
-    company.getElementsByTagName('input')[0].name =
-      company.getElementsByTagName('input')[0].name + this.nodenumber;
-    years.getElementsByTagName('input')[0].name =
-      years.getElementsByTagName('input')[0].name + this.nodenumber;
-    months.getElementsByTagName('input')[0].name =
-      months.getElementsByTagName('input')[0].name + this.nodenumber;
+    company.getElementsByTagName("input")[0].name =
+      company.getElementsByTagName("input")[0].name + this.nodenumber;
+    years.getElementsByTagName("input")[0].name =
+      years.getElementsByTagName("input")[0].name + this.nodenumber;
+    months.getElementsByTagName("input")[0].name =
+      months.getElementsByTagName("input")[0].name + this.nodenumber;
     // console.log(company);
     // console.log(domain);
 
-    domain.getElementsByTagName('input')[0].name =
-      domain.getElementsByTagName('input')[0].name + this.nodenumber;
+    domain.getElementsByTagName("input")[0].name =
+      domain.getElementsByTagName("input")[0].name + this.nodenumber;
     // console.log(projects);
-    projects.getElementsByTagName('input')[0].name =
-      projects.getElementsByTagName('input')[0].name + this.nodenumber;
+    projects.getElementsByTagName("input")[0].name =
+      projects.getElementsByTagName("input")[0].name + this.nodenumber;
 
     this.viewContainer.insert(template);
     // console.log(this.viewContainer);
