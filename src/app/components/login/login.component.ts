@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Title } from '@angular/platform-browser';
-import { Router } from '@angular/router';
-import { JwtHelperService } from '@auth0/angular-jwt';
-import { StateStoreService } from 'src/app/Dhrms-Services/StateService/state-store.service';
-import Swal from 'sweetalert2';
-import { RegistrationService } from '../../Dhrms-Services/RegistrationService/registration.service';
+import { Component, OnInit } from "@angular/core";
+import { NgForm } from "@angular/forms";
+import { Title } from "@angular/platform-browser";
+import { Router } from "@angular/router";
+import { JwtHelperService } from "@auth0/angular-jwt";
+import { StateStoreService } from "src/app/Dhrms-Services/StateService/state-store.service";
+import Swal from "sweetalert2";
+import { RegistrationService } from "../../Dhrms-Services/RegistrationService/registration.service";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.css"],
 })
 export class LoginComponent implements OnInit {
   constructor(
@@ -20,37 +20,36 @@ export class LoginComponent implements OnInit {
     private _jwtHelper: JwtHelperService,
     private titleService: Title
   ) {
-    this.titleService.setTitle('Dhrms-Login');
+    this.titleService.setTitle("Dhrms-Login");
   }
 
   //Initialization
-  RoleName: string = '';
-  Errormsg: string = '';
+  RoleName: string = "";
+  Errormsg: string = "";
   isRemember: boolean = true;
+  isEnabled: boolean = false;
   ngOnInit(): void {
-    const token = localStorage.getItem('jwt');
+    const token = localStorage.getItem("jwt");
     const decodedToken = this._jwtHelper.decodeToken(token);
-    const isRemember = localStorage.getItem('isrembember');
+    const isRemember = localStorage.getItem("isrembember");
     console.log(isRemember);
-    if (isRemember == 'true') {
+    if (isRemember == "true") {
       if (token && !this._jwtHelper.isTokenExpired(token)) {
         //localStorage.setItem('jwt',token);
-        localStorage.setItem('email', btoa(decodedToken.email));
-        localStorage.setItem('role', btoa(decodedToken.role));
-        this.router.navigate(['Home']);
+        localStorage.setItem("email", btoa(decodedToken.email));
+        localStorage.setItem("role", btoa(decodedToken.role));
+        this.router.navigate(["Home"]);
       }
     } else {
-      console.log('inside else');
+      console.log("inside else");
       if (
-        sessionStorage.getItem('role') != null ||
-        sessionStorage.getItem('role') != ""
+        sessionStorage.getItem("role") != null ||
+        sessionStorage.getItem("role") != ""
       ) {
-        console.log('login using session');
-        this.router.navigate(['Home']);
-      }
-      else
-      {
-        this.router.navigate(['login']);
+        console.log("login using session");
+        this.router.navigate(["Home"]);
+      } else {
+        this.router.navigate(["login"]);
       }
     }
   }
@@ -60,27 +59,28 @@ export class LoginComponent implements OnInit {
     console.log(form.value.remember);
 
     //not implemented
-    if (form.value.remember != '' || form.value.remember) {
+    if (form.value.remember != "" || form.value.remember) {
       this.isRemember = true;
-      localStorage.setItem('isrembember', 'true');
+      localStorage.setItem("isrembember", "true");
     } else {
-      localStorage.setItem('isrembember', 'false');
+      localStorage.setItem("isrembember", "false");
       this.isRemember = false;
     }
     console.log(this.isRemember);
 
-    if (form.value.Password == '' || form.value.Email == '') {
+    if (form.value.Password == "" || form.value.Email == "") {
       Swal.fire({
-        text: 'Please enter username and password',
-        icon: 'warning',
+        text: "Please enter username and password",
+        icon: "warning",
         showConfirmButton: true,
         // text:"Try again after sometime",
-        confirmButtonText: 'Ok',
+        confirmButtonText: "Ok",
         width: 300,
         timer: 7000,
         timerProgressBar: true,
       });
     } else {
+      this.isEnabled = true;
       this._registrationservice
         .login(form.value.Email, form.value.Password)
         .subscribe(
@@ -88,35 +88,35 @@ export class LoginComponent implements OnInit {
             // this.RoleName=response==null?"none":response;
             console.log(response);
             const token = (<any>response).token;
-            localStorage.setItem('jwt', token);
+            localStorage.setItem("jwt", token);
             // const decodedToken = this._jwtHelper.decodeToken(token);
             // this.RoleName=decodedToken.role;
             // console.log(decodedToken);
             // console.log(this.RoleName);
             this.RoleName = this._registrationservice.setUserdetails();
             console.log(this.RoleName);
-            if (this.RoleName.toLowerCase() == 'candidate') {
+            if (this.RoleName.toLowerCase() == "candidate") {
               // sessionStorage.setItem('rolename',this.RoleName);
               // sessionStorage.setItem('email',form.value.Email);
-            } else if (this.RoleName.toLowerCase() == 'interviewer') {
+            } else if (this.RoleName.toLowerCase() == "interviewer") {
               // sessionStorage.setItem('rolename',this.RoleName);
               // sessionStorage.setItem('email',form.value.Email);
-              this._flagstore.setFlag('showInterviewerDashboard', true);
-              this.router.navigate(['Home']);
-            } else if (this.RoleName.toLowerCase() == 'hr') {
-              console.log("inside hr")
+              this._flagstore.setFlag("showInterviewerDashboard", true);
+              this.router.navigate(["Home"]);
+            } else if (this.RoleName.toLowerCase() == "hr") {
+              console.log("inside hr");
               // sessionStorage.setItem('rolename',this.RoleName);
               // sessionStorage.setItem('email',form.value.Email);
-              this._flagstore.setFlag('showDashboard', true);
-              this.router.navigate(['Home']);
+              this._flagstore.setFlag("showDashboard", true);
+              this.router.navigate(["Home"]);
             } else {
-              console.log('Invalid Username or Password');
+              console.log("Invalid Username or Password");
               // alert("Invalid Username or Password");
               Swal.fire({
-                title: 'Invalid Username or Password',
-                icon: 'error',
+                title: "Invalid Username or Password",
+                icon: "error",
                 showConfirmButton: true,
-                confirmButtonText: 'continue',
+                confirmButtonText: "continue",
                 timer: 7000,
                 timerProgressBar: true,
               });
@@ -124,22 +124,23 @@ export class LoginComponent implements OnInit {
           },
           (errorReponse) => {
             this.Errormsg = errorReponse.error;
-            if (this.Errormsg.toString().includes('ProgressEvent')) {
-              this.Errormsg = 'Server error';
+            if (this.Errormsg.toString().includes("ProgressEvent")) {
+              this.Errormsg = "Server error";
+              this.isEnabled = false;
             }
             console.log(errorReponse);
             Swal.fire({
-              title: 'Something went wrong',
-              icon: 'warning',
+              title: "Something went wrong",
+              icon: "warning",
               showConfirmButton: true,
               text: this.Errormsg,
-              confirmButtonText: 'Ok',
+              confirmButtonText: "Ok",
               timer: 7000,
               timerProgressBar: true,
             });
           },
           () => {
-            console.log('validateCredentials Method Executed');
+            console.log("validateCredentials Method Executed");
           }
         );
     }

@@ -28,6 +28,7 @@ import { ScheduleInterviewComponent } from "./components/schedule-interview/sche
 import { JwtModule } from "@auth0/angular-jwt";
 import { InterviewerFeedbackComponent } from "./components/interviewer-feedback/interviewer-feedback.component";
 import { UploadFileComponent } from "./components/upload-file/upload-file.component";
+import { LoaderComponent } from './components/loader/loader.component';
 
 //jwt getter
 export function tokenGetter() {
@@ -55,6 +56,7 @@ export function tokenGetter() {
     ScheduleInterviewComponent,
     InterviewerFeedbackComponent,
     UploadFileComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,
