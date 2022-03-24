@@ -1,4 +1,17 @@
+
+
 # DhrmsApp
+
+# [Demo](https://hrmanagement-app.herokuapp.com/)
+
+## Try this [website](https://hrmanagement-app.herokuapp.com/) by using below details
+
+Test HR: testhr@email.com 
+Password: 1234
+
+Test Employee: testint1@email.com
+Password: YqefmFOM
+## 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.1.
 
