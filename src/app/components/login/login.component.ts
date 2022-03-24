@@ -110,6 +110,7 @@ export class LoginComponent implements OnInit {
               this._flagstore.setFlag("showDashboard", true);
               this.router.navigate(["Home"]);
             } else {
+              this.isEnabled=false;
               console.log("Invalid Username or Password");
               // alert("Invalid Username or Password");
               Swal.fire({
