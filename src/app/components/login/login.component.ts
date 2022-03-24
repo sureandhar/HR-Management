@@ -110,7 +110,7 @@ export class LoginComponent implements OnInit {
               this._flagstore.setFlag("showDashboard", true);
               this.router.navigate(["Home"]);
             } else {
-              this.isEnabled=false;
+              this.isEnabled = false;
               console.log("Invalid Username or Password");
               // alert("Invalid Username or Password");
               Swal.fire({
@@ -129,6 +129,7 @@ export class LoginComponent implements OnInit {
               this.Errormsg = "Server error";
               this.isEnabled = false;
             }
+            this.isEnabled = false;
             console.log(errorReponse);
             Swal.fire({
               title: "Something went wrong",
