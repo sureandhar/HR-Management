@@ -2,9 +2,9 @@
 
 # DhrmsApp
 
-# [Demo](https://hrmanagement-app.herokuapp.com/)
+# [Demo](https://hr-management-blush.vercel.app/login)
 
-## Try this [website](https://hrmanagement-app.herokuapp.com/) by using below details
+## Try this [website](https://hr-management-blush.vercel.app/login) by using below details
 
 Test HR: testhr@email.com 
 Password: 1234
